@@ -1,0 +1,19 @@
+package university
+
+class HelloController {
+
+    def index() { }
+}
+package university
+
+class HelloController {
+
+    def index() {
+        render "Hello from UBS Intern Training"
+    }
+
+    def showMessage(String name) {
+        render "Hello ${name}"
+    }
+}
+
