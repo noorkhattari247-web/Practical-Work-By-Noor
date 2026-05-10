@@ -2,6 +2,8 @@ package student
 
 class EnrollmentController {
 
+    EnrollmentService enrollmentService
+
     def index() {
         [enrollments: Enrollment.list()]
     }
@@ -12,40 +14,23 @@ class EnrollmentController {
 
     def save() {
 
-        def student = Student.get(params.long('student.id'))
-        def course = Course.get(params.long('course.id'))
-
-        def existing =
-                Enrollment.findByStudentAndCourse(student, course)
-
-        if(existing) {
-
-            flash.message = "Already enrolled"
-
-            redirect(action:"create")
-            return
-        }
-
-        def enrollment = new Enrollment(
-                student: student,
-                course: course,
-                grade: params.double('grade')
+        def result = enrollmentService.enroll(
+                params.long('student.id'),
+                params.long('course.id')
         )
 
-        enrollment.save(flush:true)
-
-        flash.message = "Saved"
+        if(result) {
+            flash.message = "Saved"
+        } else {
+            flash.message = "Duplicate"
+        }
 
         redirect(action:"index")
     }
 
     def delete(Long id) {
 
-        def enrollment = Enrollment.get(id)
-
-        enrollment?.delete(flush:true)
-
-        flash.message = "Deleted"
+        enrollmentService.unenroll(id)
 
         redirect(action:"index")
     }
