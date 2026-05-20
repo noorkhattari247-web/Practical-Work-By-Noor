@@ -3,9 +3,11 @@ package student
 class UrlMappings {
 
     static mappings = {
+
+        "/api/students/$id/courses"(controller: "studentRest", action: "courses", method: "GET")
+
         "/$controller/$action?/$id?(.$format)?"{
             constraints {
-                // apply constraints here
             }
         }
 

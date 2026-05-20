@@ -1,5 +1,3 @@
-package student
-
 class Student {
 
     String name
@@ -7,8 +5,10 @@ class Student {
 
     static hasMany = [enrollments: Enrollment]
 
+    static responseFormats = ['json', 'html']
+
     static constraints = {
-        name blank:false
-        email blank:false, unique:true
+        name blank: false
+        email blank: false, email: true
     }
 }
