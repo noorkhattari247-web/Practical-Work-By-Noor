@@ -1,3 +1,5 @@
+package student
+
 class Student {
 
     String name
