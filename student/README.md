@@ -1,8 +1,24 @@
-| Method | URL | Params | Response | Status |
-|----------|----------|----------|----------|----------|
-| GET | /api/students | name,email,max,offset | Student List | 200 |
-| GET | /api/students/{id} | id | Student | 200,404 |
-| POST | /api/students | JSON Body | Student | 201,400 |
-| PUT | /api/students/{id} | JSON Body | Updated Student | 200 |
-| DELETE | /api/students/{id} | id | No Content | 204 |
-| GET | /api/students/{id}/gpa | id | GPA | 200,404 |
+# Security Setup
+
+## Users
+
+| Username                                | Role       |
+| --------------------------------------- | ---------- |
+| [admin@ubs.com](mailto:admin@ubs.com)   | ROLE_ADMIN |
+| [intern@ubs.com](mailto:intern@ubs.com) | ROLE_USER  |
+
+## Security Features
+
+* Spring Security Core dependency added
+* User, Role and UserRole domain classes created
+* Bootstrap users initialized
+* Role-Based Access Control configured
+* Admin role for management functions
+* User role for normal application access
+
+## Protected Resources
+
+* /admin/** → ROLE_ADMIN
+* /api/** → Authenticated users
+* Home page and login page → Public access
+

@@ -1,3 +1,5 @@
+package student
+
 import grails.rest.*
 
 @Resource(uri='/api/enrollments', formats=['json', 'html'])
